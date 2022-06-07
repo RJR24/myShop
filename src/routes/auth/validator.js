@@ -1,29 +1,31 @@
-const expressValidator = require("express-validator");
-const check = expressValidator.check();
+ const expressValidator = require('express-validator');
+const check = expressValidator.check;
 
 module.exports = new class {
-  registerValidator() {
+  registerValidator(){
     return [
-      check("email")
-        .isEmail()
-        .withMessage("please enter a valid email address!"),
-      check("name").not().isEmpty().withMessage("name filed can not be empty!"),
-      check("password")
-        .not()
-        .isEmpty()
-        .withMessage("password filed can not be empty!"),
-    ];
-  }
-
-  loginValidator() {
+      check('email')
+      .isEmail()
+      .withMessage('please enter your email address!'),
+      check('name')
+      .not()
+      .isEmpty()
+      .withMessage('please enter your name!'),
+      check('password')
+      .not()
+      .isEmpty()
+      .withMessage('please enter your password!')
+    ]
+  } 
+  loginValidator(){
     return [
-      check("email")
-        .isEmail()
-        .withMessage("please enter a valid email address!"),
-      check("password")
-        .not()
-        .isEmpty()
-        .withMessage("password filed can not be empty!"),
-    ];
+      check('email')
+      .isEmail()
+      .withMessage('email is invalid!'),
+      check('password')
+      .not()
+      .isEmpty()
+      .withMessage('please enter your password!')
+    ]
   }
-};
+}
