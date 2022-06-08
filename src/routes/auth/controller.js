@@ -1,6 +1,8 @@
 const controller = require("./../controller");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const config = require("config");
 
 module.exports = new (class extends controller {
   async register(req, res) {
@@ -41,5 +43,7 @@ module.exports = new (class extends controller {
         code: 400,
       });
     }
+    const token = jwt.sign({ _id: user.id }, config.get("jwt_key"));
+    this.response({res, data: token, message: "user logged in successfully" });
   }
 })();
