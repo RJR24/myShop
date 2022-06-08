@@ -10,7 +10,7 @@ module.exports = class {
 
   validationBody(req, res) {
     const result = validationResult(req);
-    if (!result.isEmpty) {
+    if (!result.isEmpty()) {
       const errors = result.array();
       const messages = [];
       errors.forEach((err) => messages.push(err.msg));
@@ -26,10 +26,10 @@ module.exports = class {
     if (!this.validationBody(req, res)) return;
     next();
   }
-  response({res,message,data,code=200}){
+  response({ res, message, data, code = 200 }) {
     res.status(code).json({
       message,
-      data
-    })
+      data,
+    });
   }
 };
