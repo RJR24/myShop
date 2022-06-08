@@ -2,5 +2,6 @@
   "name": "my shop project",
   "db": {
     "address": "mongodb://localhost:27017/myShop"
-  }
+  },
+  "jwt_key": "ls1dkjf3hlskdjfpo9kwepofkpwoe7kfpwekf2pkpwkpldn3"
 }
