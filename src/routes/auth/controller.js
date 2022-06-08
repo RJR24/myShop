@@ -3,7 +3,7 @@ const _ = require("lodash");
 const bcrypt = require("bcrypt");
 
 module.exports = new (class extends controller {
-  async register(req, res) { 
+  async register(req, res) {
     let user = await this.User.findOne({ email: req.body.email });
     if (user) {
       return this.response({
@@ -25,6 +25,21 @@ module.exports = new (class extends controller {
   }
 
   async login(req, res) {
-    return res.send("login");
+    const user = await this.User.findOne({ email: req.body.email });
+    if (!user) {
+      return this.response({
+        res,
+        message: "email or password is not valid!",
+        code: 400,
+      });
+    }
+    const isValid = await bcrypt.compare(req.body.password, user.password);
+    if (!isValid) {
+      return this.response({
+        res,
+        message: "email or password is not valid!",
+        code: 400,
+      });
+    }
   }
 })();
