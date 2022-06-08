@@ -23,7 +23,7 @@ module.exports = class {
     return true;
   }
   validate(req, res, next) {
-    if (!validationBody(req, res)) return;
+    if (!this.validationBody(req, res)) return;
     next();
   }
   response({res,message,data,code=200}){
