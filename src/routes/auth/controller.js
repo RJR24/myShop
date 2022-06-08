@@ -1,4 +1,5 @@
 const controller = require("./../controller");
+const _ = require("lodash");
 
 module.exports = new (class extends controller {
   async register(req, res) {
@@ -10,12 +11,7 @@ module.exports = new (class extends controller {
         code: 400,
       });
     }
-    const { email, name, password } = req.body;
-    user = new this.User({
-      email,
-      name,
-      password,
-    });
+    user = new this.User(_.pick(req.body, ["email", "name", "password"]));
   }
 
   async login(req, res) {
