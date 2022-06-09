@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 const controller = require("./controller");
 
-router.post(
+router.get(
   "/",
   controller.dashboard
 );
-router.post(
+router.get(
   "/me",
   controller.me
 );
