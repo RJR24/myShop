@@ -19,8 +19,14 @@ mongoose
   .catch((err) => debug("Could not connect to the mongoDB!"));
 
 process.on("uncaughtException", (ex) => {
-  debug("uncaught exception!");
+  console.log("uncaught exception!");
   winston.error(ex.message, ex);
+  process.exit(1);
+});
+process.on("unhandledRejection", (ex) => {
+  console.log("unhandeled Rejection!");
+  winston.error(ex.message, ex);
+  process.exit(1);
 });
 
 winston.add(new winston.transports.File({ filename: "errorsfile.log" }));
