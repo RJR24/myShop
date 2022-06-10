@@ -18,6 +18,11 @@ mongoose
   .then(() => debug("Connected to the mongoDB"))
   .catch((err) => debug("Could not connect to the mongoDB!"));
 
+process.on("uncaughtException", (ex) => {
+  debug("uncaught exception!");
+  winston.error(ex.message, ex);
+});
+
 winston.add(new winston.transports.File({ filename: "errorsfile.log" }));
 
 app.use("/api", router);
