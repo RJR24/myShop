@@ -21,7 +21,7 @@ module.exports = new class {
     return [
       check('email')
       .isEmail()
-      .withMessage('email is invalid!'),
+      .withMessage('please enter a valid email address!'),
       check('password')
       .not()
       .isEmpty()
