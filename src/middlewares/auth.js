@@ -4,7 +4,7 @@ const User = require("../models/user");
 
 async function isLoggedIn(req, res, next) {
   const token = req.header("x-auth-token");
-  if (!token) res.status(401).send("access denied");
+  if (!token) return res.status(401).send("access denied");
   try {
     const decoded = jwt.verify(token, config.get("jwt_key"));
     const user = await User.findById(decoded._id);
